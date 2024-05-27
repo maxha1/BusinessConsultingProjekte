@@ -109,7 +109,7 @@ Zusammengefasst, berechnet dieser Code Bradford-Faktoren für Mitarbeiter, basie
 
 Dieser VBA-Code ist ein Beispiel für die Datenbereinigung und -verarbeitung in Excel. Er trennt verbundene Zellen, organisiert die Daten neu und löscht überflüssige Spalten, um das Arbeitsblatt zu bereinigen und die Daten für weitere Analysen vorzubereiten.
 
-![Beschreibung des Bildes](BusinessConsultingProjekte/assets/images/Enersuisse_Datenimport_Anleitung.jpg)
+![Beschreibung des Bildes](assets/images/Enersuisse_Datenimport_Anleitung.jpg)
 
 Aktivieren des Arbeitsblattes:
 

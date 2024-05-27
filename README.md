@@ -1,19 +1,12 @@
-  # BusinessConsultingProjekte
+# Business-Consulting Projekte
 Dies ist ein Repository, welches ausgewählte Projekte während meiner Anstellung als Business Consultant bei der Capita Customer Services AG enthält.
-
-# Mein Portfolio
-
-Willkommen zu meinem Portfolio! Hier finden Sie Informationen zu meinen Projekten und beruflichen Erfahrungen.
 
 ## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit
 
 ### Beschreibung
 Dieses Projekt beinhaltet die Berechnung des Bradford-Faktors für Mitarbeiter basierend auf ihren Abwesenheitsdaten. Der Bradford-Faktor ist eine Kennzahl, die die Anzahl und Dauer der Krankheitsausfälle von Mitarbeitern bewertet. Diese Metrik hilft dabei, die Auswirkungen von häufigen, kurzen Abwesenheiten zu analysieren, die sich stärker auf den Betrieb auswirken können als längere, seltenere Ausfälle.
 
-### SQL-Code
-Der gegebene SQL-Code führt eine komplexe Datenmanipulation durch, um Bradford-Faktoren basierend auf Schichtdaten zu berechnen. Hier ist eine Schritt-für-Schritt-Erklärung dessen, was dieser Code tut:
-
-Deklaration von Variablen:
+Zwei Datumsvariablen @Von und @Bis definieren den Zeitraum, in dem die Analyse durchgeführt wird. Die Variablen @i und @j werden später in der Schleife verwendet.
 
 ```sql
 DECLARE @Von DATE = '2024-02-01'
@@ -22,9 +15,7 @@ DECLARE @i INT
 DECLARE @j DATE
 ```
 
-Zwei Datumsvariablen @Von und @Bis definieren den Zeitraum, in dem die Analyse durchgeführt wird. Die Variablen @i und @j werden später in der Schleife verwendet.
-
-Erstellen von temporären Tabellen:
+Drei temporäre Tabellen werden erstellt, um die Zwischenergebnisse und die Endergebnisse zu speichern:
 
 ```sql
 CREATE TABLE #Result_Periode (st_staff INT, Datum DATETIME, Zähler INT, Krank INT)
@@ -32,12 +23,11 @@ CREATE TABLE #Schichtcenter_Daten (Eintraege_total INT, Eintraege_MA INT, Datum 
 CREATE TABLE #Bradford_Ergebnisse (st_staff_id INT, Anzahl_Ausfaelle INT, Anzahl_Fehltage INT)
 ```
 
-Drei temporäre Tabellen werden erstellt, um die Zwischenergebnisse und die Endergebnisse zu speichern:
-
 #Result_Periode speichert die Periode der Abwesenheit jedes Mitarbeiters.
 #Schichtcenter_Daten speichert die Schichtdaten der Mitarbeiter.
 #Bradford_Ergebnisse speichert die endgültigen Bradford-Faktoren.
-Einfügen von Daten in #Schichtcenter_Daten:
+
+Hier werden die relevanten Schichtdaten von unserer unternehmensinternen Schichtplanungsdatenbank in die temporäre Tabelle #Schichtcenter_Daten eingefügt. Die Daten werden nach Mitarbeiter und Datum gruppiert und sortiert. Jede Zeile erhält eine laufende Nummer.
 
 ```sql
 INSERT INTO #Schichtcenter_Daten
@@ -57,17 +47,13 @@ GROUP BY tws.on_date, tws.st_staff_id, tkt.name
 ORDER BY tws.on_date, tws.st_staff_id
 ```
 
-Hier werden die relevanten Schichtdaten von einer externen Datenbank (vermutlich eine Schichtplanungsdatenbank) in die temporäre Tabelle #Schichtcenter_Daten eingefügt. Die Daten werden nach Mitarbeiter und Datum gruppiert und sortiert. Jede Zeile erhält eine laufende Nummer.
-
-Initialisierung der Schleifenvariablen:
+Initialisierung der Schleifenvariablen @i auf den Wert 1, um die Schleife zu starten.
 
 ```sql
 SET @i = 1
 ```
 
-Die Variable @i wird auf 1 gesetzt, um die Schleife zu starten.
-
-Schleife zur Verarbeitung der Daten:
+Diese Schleife iteriert durch die Einträge in #Schichtcenter_Daten. Wenn es sich um den ersten Eintrag eines Mitarbeiters oder um ein nicht aufeinanderfolgendes Datum handelt, wird ein neuer Eintrag in #Result_Periode erstellt. Die Variable @j wird aktualisiert, um das Datum des aktuellen Eintrags zu speichern.
 
 ```sql
 WHILE @i <= (SELECT MAX(Eintraege_total) FROM #Schichtcenter_Daten)
@@ -81,9 +67,7 @@ BEGIN
 END
 ```
 
-Diese Schleife iteriert durch die Einträge in #Schichtcenter_Daten. Wenn es sich um den ersten Eintrag eines Mitarbeiters oder um ein nicht aufeinanderfolgendes Datum handelt, wird ein neuer Eintrag in #Result_Periode erstellt. Die Variable @j wird aktualisiert, um das Datum des aktuellen Eintrags zu speichern.
-
-Einfügen von Daten in #Bradford_Ergebnisse:
+Die endgültigen Bradford-Faktoren werden berechnet und in die Tabelle #Bradford_Ergebnisse eingefügt. Die Anzahl der Ausfallperioden und die durchschnittliche Anzahl der Krankheitstage werden pro Mitarbeiter gruppiert und berechnet.
 
 ```sql
 INSERT INTO #Bradford_Ergebnisse
@@ -92,15 +76,12 @@ FROM #Result_Periode RP
 GROUP BY RP.st_staff
 ```
 
-Die endgültigen Bradford-Faktoren werden berechnet und in die Tabelle #Bradford_Ergebnisse eingefügt. Die Anzahl der Ausfallperioden und die durchschnittliche Anzahl der Krankheitstage werden pro Mitarbeiter gruppiert und berechnet.
-
-Ausgabe der Ergebnisse und Bereinigung:
+Ausgabe der Ergebnisse und löschen der temporären Tabellen, um den Speicherplatz freizugeben.
 
 ```sql
 SELECT * FROM #Bradford_Ergebnisse
 DROP TABLE #Bradford_Ergebnisse, #Result_Periode, #Schichtcenter_Daten
 ```
-Die temporären Tabellen werden gelöscht, um den Speicherplatz freizugeben.
 
 # Fiktive Ergebnistabelle
 
@@ -126,41 +107,43 @@ Zusammengefasst, berechnet dieser Code Bradford-Faktoren für Mitarbeiter, basie
 
 
 
-Projekt: Datenbereinigung und -verarbeitung mit VBA
+##Projekt: Datenbereinigung und -verarbeitung mit VBA
 
-Beschreibung des VBA-Codes
-Dieser VBA-Code wurde entwickelt, um Daten in einem Excel-Arbeitsblatt namens "SourceSheet" zu bereinigen und zu verarbeiten. Hier sind die detaillierten Schritte und Funktionen, die der Code ausführt:
+Dieser VBA-Code ist ein Beispiel für die Datenbereinigung und -verarbeitung in Excel. Er trennt verbundene Zellen, organisiert die Daten neu und löscht überflüssige Spalten, um das Arbeitsblatt zu bereinigen und die Daten für weitere Analysen vorzubereiten.
 
 Aktivieren des Arbeitsblattes:
 
 ```vba
 ThisWorkbook.Activate
 Set SourceSheet = ActiveWorkbook.Worksheets("SourceSheet")
-Aktiviert das aktuelle Arbeitsbuch und weist das Arbeitsblatt "SourceSheet" der Variablen SourceSheet zu.
-Bildschirmaktualisierung deaktivieren:
 ```
+
+Aktiviert das aktuelle Workbook und weist das Arbeitsblatt "SourceSheet" der Variablen SourceSheet zu.
+Bildschirmaktualisierung deaktivieren, um die Ausführungsgeschwindigkeit zu erhöhen und Flackern zu vermeiden.
 
 ```vba
 Application.ScreenUpdating = False
-Deaktiviert die Bildschirmaktualisierung, um die Ausführungsgeschwindigkeit zu erhöhen und Flackern zu vermeiden.
-Zellen entmischen:
 ```
+
+Zelleverbund aufheben:
 
 ```vba
 SourceSheet.Cells(1, 3).Select
 Selection.UnMerge
 SourceSheet.Cells(2, 3).Select
 Selection.UnMerge
-Entmischt die verbundenen Zellen in den ersten beiden Zeilen der Spalte C.
-Relevante Zeilen ermitteln:
 ```
+
+Trennt die verbundenen Zellen in den ersten beiden Zeilen der Spalte C.
+Relevante Zeilen ermitteln:
 
 ```vba
 FirstRow = 3
 LastRow = SourceSheet.Cells(Rows.Count, 1).End(xlUp).Row
 Bestimmt die erste relevante Zeile (FirstRow = 3) und die letzte gefüllte Zeile in der Spalte A (LastRow).
-Durchlaufen des Arbeitsblattes:
 ```
+
+Durchläuft die Zeilen von FirstRow bis LastRow, trennt verbundene Zellen und verschiebt Inhalte entsprechend in die Spalten A, B und C.
 
 ```vba
 For SourceRow = FirstRow To LastRow
@@ -186,20 +169,15 @@ For SourceRow = FirstRow To LastRow
 Next SourceRow
 ```
 
-Durchläuft die Zeilen von FirstRow bis LastRow, entmischt verbundene Zellen und verschiebt Inhalte entsprechend in die Spalten A, B und C.
-Löschen der Spalte D:
+Löscht die gesamte Spalte D und verschiebt die restlichen Spalten nach links.
 
 ```vba
 Columns("D:D").Select
 Selection.Delete Shift:=xlToLeft
 ```
 
-Löscht die gesamte Spalte D und verschiebt die restlichen Spalten nach links.
-Bildschirmaktualisierung wieder aktivieren:
+Aktiviert die Bildschirmaktualisierung erneut, nachdem die Datenbereinigung abgeschlossen ist.
 
 ```vba
 Application.ScreenUpdating = True
-Aktiviert die Bildschirmaktualisierung erneut, nachdem die Datenbereinigung abgeschlossen ist.
 ```
-
-

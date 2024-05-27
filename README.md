@@ -122,6 +122,84 @@ Diese Tabelle zeigt die Anzahl der Ausfälle und die durchschnittliche Anzahl de
 - **Anzahl Ausfälle**: Die Anzahl der Abwesenheitsperioden des Mitarbeiters innerhalb des angegebenen Zeitraums.
 - **Durchschnittliche Fehltage**: Die durchschnittliche Anzahl der Fehltage pro Abwesenheitsperiode.
 
-Diese Daten wurden zur Veranschaulichung generiert und basieren auf fiktiven Werten.
-
 Zusammengefasst, berechnet dieser Code Bradford-Faktoren für Mitarbeiter, basierend auf Schichtdaten in einem bestimmten Zeitraum, und speichert die Ergebnisse in temporären Tabellen, bevor sie schließlich ausgegeben werden.
+
+
+
+Projekt: Datenbereinigung und -verarbeitung mit VBA
+
+Beschreibung des VBA-Codes
+Dieser VBA-Code wurde entwickelt, um Daten in einem Excel-Arbeitsblatt namens "SourceSheet" zu bereinigen und zu verarbeiten. Hier sind die detaillierten Schritte und Funktionen, die der Code ausführt:
+
+Aktivieren des Arbeitsblattes:
+
+```vba
+ThisWorkbook.Activate
+Set SourceSheet = ActiveWorkbook.Worksheets("SourceSheet")
+Aktiviert das aktuelle Arbeitsbuch und weist das Arbeitsblatt "SourceSheet" der Variablen SourceSheet zu.
+Bildschirmaktualisierung deaktivieren:
+```
+
+```vba
+Application.ScreenUpdating = False
+Deaktiviert die Bildschirmaktualisierung, um die Ausführungsgeschwindigkeit zu erhöhen und Flackern zu vermeiden.
+Zellen entmischen:
+```
+
+```vba
+SourceSheet.Cells(1, 3).Select
+Selection.UnMerge
+SourceSheet.Cells(2, 3).Select
+Selection.UnMerge
+Entmischt die verbundenen Zellen in den ersten beiden Zeilen der Spalte C.
+Relevante Zeilen ermitteln:
+```
+
+```vba
+FirstRow = 3
+LastRow = SourceSheet.Cells(Rows.Count, 1).End(xlUp).Row
+Bestimmt die erste relevante Zeile (FirstRow = 3) und die letzte gefüllte Zeile in der Spalte A (LastRow).
+Durchlaufen des Arbeitsblattes:
+```
+
+```vba
+For SourceRow = FirstRow To LastRow
+    SourceSheet.Cells(SourceRow, 1).Select
+    If Trim(SourceSheet.Cells(SourceRow, 1).Value) <> "" And Selection.Cells.Count = 1 Then
+        SpaltenArray(0) = SourceSheet.Cells(SourceRow, 1).Value
+    ElseIf Trim(SourceSheet.Cells(SourceRow, 1).Value) <> "" And Selection.Cells.Count = 2 Then
+        Selection.UnMerge
+        SpaltenArray(1) = SourceSheet.Cells(SourceRow, 1).Value
+        SourceSheet.Cells(SourceRow, 1).Value = SpaltenArray(0)
+        SourceSheet.Cells(SourceRow, 2).Value = SpaltenArray(1)
+    Else
+        SourceSheet.Cells(SourceRow, 2).Select
+        Selection.UnMerge
+        SourceSheet.Cells(SourceRow, 1).Value = SpaltenArray(0)
+        SourceSheet.Cells(SourceRow, 3).Value = SourceSheet.Cells(SourceRow, 2).Value
+        SourceSheet.Cells(SourceRow, 2).Value = SpaltenArray(1)
+    End If
+    SourceSheet.Cells(SourceRow, 3).Select
+    If Selection.Cells.Count = 2 Then
+        Selection.UnMerge
+    End If
+Next SourceRow
+```
+
+Durchläuft die Zeilen von FirstRow bis LastRow, entmischt verbundene Zellen und verschiebt Inhalte entsprechend in die Spalten A, B und C.
+Löschen der Spalte D:
+
+```vba
+Columns("D:D").Select
+Selection.Delete Shift:=xlToLeft
+```
+
+Löscht die gesamte Spalte D und verschiebt die restlichen Spalten nach links.
+Bildschirmaktualisierung wieder aktivieren:
+
+```vba
+Application.ScreenUpdating = True
+Aktiviert die Bildschirmaktualisierung erneut, nachdem die Datenbereinigung abgeschlossen ist.
+```
+
+

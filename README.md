@@ -1,10 +1,10 @@
 # Business-Consulting Projekte
-Dies ist ein Repository, welches ausgewählte Projekte während meiner Anstellung als Business Consultant bei der Capita Customer Services AG enthält.
+Dies ist ein Repository, welches Projekte während meiner Anstellung als Business Consultant bei der Capita Customer Services AG enthält.
 
 ## Inhaltsverzeichnis
 
-- [Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit](##Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit)
-- [Projekt: Datenbereinigung und -verarbeitung mit VBA](##Projekt: Datenbereinigung und -verarbeitung mit VBA)
+- [Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit](## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit)
+- [Projekt: Datenbereinigung und -verarbeitung mit VBA](## Projekt: Datenbereinigung und -verarbeitung mit VBA)
 
 
 ## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit

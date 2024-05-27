@@ -1,7 +1,7 @@
   # BusinessConsultingProjekte
 Dies ist ein Repository, welches ausgewählte Projekte während meiner Anstellung als Business Consultant bei der Capita Customer Services AG enthält.
 
-# Mein Portfoliooo
+# Mein Portfolio
 
 Willkommen zu meinem Portfolio! Hier finden Sie Informationen zu meinen Projekten und beruflichen Erfahrungen.
 
@@ -71,4 +71,5 @@ SELECT * FROM #Bradford_Ergebnisse
 
 --Bereinigung der temporären Tabellen
 DROP TABLE #Bradford_Ergebnisse, #Result_Periode, #Schichtcenter_Daten
+```
 

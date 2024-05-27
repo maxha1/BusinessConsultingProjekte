@@ -3,8 +3,8 @@ Dies ist ein Repository, welches Projekte während meiner Anstellung als Busines
 
 ## Inhaltsverzeichnis
 
-- [Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit](## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit)
-- [Projekt: Datenbereinigung und -verarbeitung mit VBA](## Projekt: Datenbereinigung und -verarbeitung mit VBA)
+- [Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit](#Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit)
+- [Projekt: Datenbereinigung und -verarbeitung mit VBA](#Projekt: Datenbereinigung und -verarbeitung mit VBA)
 
 
 ## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit

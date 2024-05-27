@@ -100,7 +100,28 @@ Ausgabe der Ergebnisse und Bereinigung:
 SELECT * FROM #Bradford_Ergebnisse
 DROP TABLE #Bradford_Ergebnisse, #Result_Periode, #Schichtcenter_Daten
 ```
+Die temporären Tabellen werden gelöscht, um den Speicherplatz freizugeben.
 
-Die Ergebnisse werden angezeigt, und die temporären Tabellen werden gelöscht, um den Speicherplatz freizugeben.
+# Fiktive Ergebnistabelle
+
+Diese Tabelle zeigt die Anzahl der Ausfälle und die durchschnittliche Anzahl der Fehltage für verschiedene Mitarbeiter basierend auf den Ergebnissen des SQL-Codes.
+
+## Bradford-Ergebnisse
+
+| Mitarbeiter-ID | Anzahl Ausfälle | Durchschnittliche Fehltage |
+|----------------|------------------|----------------------------|
+| 101            | 3                | 2                          |
+| 102            | 1                | 5                          |
+| 103            | 2                | 3                          |
+| 104            | 4                | 1.5                        |
+| 105            | 2                | 4                          |
+
+### Erklärung der Spalten
+
+- **Mitarbeiter-ID**: Die eindeutige ID des Mitarbeiters.
+- **Anzahl Ausfälle**: Die Anzahl der Abwesenheitsperioden des Mitarbeiters innerhalb des angegebenen Zeitraums.
+- **Durchschnittliche Fehltage**: Die durchschnittliche Anzahl der Fehltage pro Abwesenheitsperiode.
+
+Diese Daten wurden zur Veranschaulichung generiert und basieren auf fiktiven Werten.
 
 Zusammengefasst, berechnet dieser Code Bradford-Faktoren für Mitarbeiter, basierend auf Schichtdaten in einem bestimmten Zeitraum, und speichert die Ergebnisse in temporären Tabellen, bevor sie schließlich ausgegeben werden.

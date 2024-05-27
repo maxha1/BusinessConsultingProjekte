@@ -83,11 +83,9 @@ SELECT * FROM #Bradford_Ergebnisse
 DROP TABLE #Bradford_Ergebnisse, #Result_Periode, #Schichtcenter_Daten
 ```
 
-# Fiktive Ergebnistabelle
+## Fiktive Ergebnistabelle
 
 Diese Tabelle zeigt die Anzahl der Ausfälle und die durchschnittliche Anzahl der Fehltage für verschiedene Mitarbeiter basierend auf den Ergebnissen des SQL-Codes.
-
-## Bradford-Ergebnisse
 
 | Mitarbeiter-ID | Anzahl Ausfälle | Durchschnittliche Fehltage |
 |----------------|------------------|----------------------------|
@@ -97,7 +95,7 @@ Diese Tabelle zeigt die Anzahl der Ausfälle und die durchschnittliche Anzahl de
 | 104            | 4                | 1.5                        |
 | 105            | 2                | 4                          |
 
-### Erklärung der Spalten
+Sie enthält hierbei folgende drei Spalten:
 
 - **Mitarbeiter-ID**: Die eindeutige ID des Mitarbeiters.
 - **Anzahl Ausfälle**: Die Anzahl der Abwesenheitsperioden des Mitarbeiters innerhalb des angegebenen Zeitraums.
@@ -107,7 +105,7 @@ Zusammengefasst, berechnet dieser Code Bradford-Faktoren für Mitarbeiter, basie
 
 
 
-##Projekt: Datenbereinigung und -verarbeitung mit VBA
+## Projekt: Datenbereinigung und -verarbeitung mit VBA
 
 Dieser VBA-Code ist ein Beispiel für die Datenbereinigung und -verarbeitung in Excel. Er trennt verbundene Zellen, organisiert die Daten neu und löscht überflüssige Spalten, um das Arbeitsblatt zu bereinigen und die Daten für weitere Analysen vorzubereiten.
 

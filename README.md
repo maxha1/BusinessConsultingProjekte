@@ -1,5 +1,3 @@
-Dies ist ein Repository, welches Projekte während meiner Anstellung als Business Consultant bei der Capita Customer Services AG enthält.
-
 ## Inhaltsverzeichnis
 
  - [Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit](#Projekt:-Berechnung-des-Bradford-Faktors-zur-Mitarbeiterabwesenheit)

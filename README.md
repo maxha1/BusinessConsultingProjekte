@@ -88,7 +88,7 @@ SELECT * FROM #Bradford_Ergebnisse
 DROP TABLE #Bradford_Ergebnisse, #Result_Periode, #Schichtcenter_Daten
 ```
 
-## Fiktive Ergebnistabelle
+### Fiktive Ergebnistabelle
 
 Diese Tabelle zeigt die Anzahl der Ausfälle und die durchschnittliche Anzahl der Fehltage für verschiedene Mitarbeiter basierend auf den Ergebnissen des SQL-Codes.
 

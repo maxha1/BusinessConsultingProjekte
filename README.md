@@ -1,4 +1,4 @@
-## Inhaltsverzeichnis
+## Business Consulting Projekte
 
  - [Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit](#Projekt:-Berechnung-des-Bradford-Faktors-zur-Mitarbeiterabwesenheit)
  - [Projekt: Datenbereinigung und -verarbeitung mit VBA](#Projekt:-Datenbereinigung-und-verarbeitung-mit-VBA)

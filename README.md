@@ -112,7 +112,9 @@ Zusammengefasst, berechnet dieser Code Bradford-Faktoren für Mitarbeiter, basie
 
 ## Projekt: Datenbereinigung und -verarbeitung mit VBA
 
-Dieser VBA-Code ist ein Beispiel für die Datenbereinigung und -verarbeitung in Excel. Er trennt verbundene Zellen, organisiert die Daten neu und löscht überflüssige Spalten, um das Arbeitsblatt zu bereinigen und die Daten für weitere Analysen vorzubereiten.
+Dieser VBA-Code ist ein Beispiel für die Datenbereinigung und -verarbeitung in Excel. Es handelte sich hierbei um einen Auftrag unseres Kunden Enersuisse, welche die Anrufdaten seiner Mitarbeiter täglich in einer Excel Datei zur Verfügung stellt. Das Ziel des Projekts war es die Excel-Datei in ein für den Kunden passendes Format zu bringen und anschließend zur besseren Analyse mithilfe von SQL Server Integration Services (SSIS) in eine SQL-Datenbank zu importieren. 
+
+Der VBA-Code trennt dabei verbundene Zellen, organisiert die Daten neu und löscht überflüssige Spalten, um das Arbeitsblatt zu bereinigen und die Daten für weitere Analysen vorzubereiten.
 
 ![Beschreibung des Bildes](assets/images/Enersuisse_Datenimport_Anleitung.jpg)
 

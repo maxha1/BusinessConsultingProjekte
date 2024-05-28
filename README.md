@@ -188,3 +188,7 @@ Aktiviert die Bildschirmaktualisierung erneut, nachdem die Datenbereinigung abge
 ```vba
 Application.ScreenUpdating = True
 ```
+
+Die transformierten Daten für den Import per SSIS sehen anschließend aus:
+
+![Beschreibung des Bildes](assets/images/Enersuisse_Transformierte_Daten.jpg)

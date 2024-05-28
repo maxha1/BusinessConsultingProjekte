@@ -1,6 +1,4 @@
-# Business-Consulting Projekte
 Dies ist ein Repository, welches Projekte während meiner Anstellung als Business Consultant bei der Capita Customer Services AG enthält.
-Ts
 
 ## Inhaltsverzeichnis
 

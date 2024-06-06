@@ -1,9 +1,3 @@
-## Business Consulting Projekte
-
- - [Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit](#Projekt:-Berechnung-des-Bradford-Faktors-zur-Mitarbeiterabwesenheit)
- - [Projekt: Datenbereinigung und -verarbeitung mit VBA](#Projekt:-Datenbereinigung-und-verarbeitung-mit-VBA)
-
-
 ## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit
 
 ### Beschreibung
@@ -79,7 +73,7 @@ FROM #Result_Periode RP
 GROUP BY RP.st_staff
 ```
 
-Ausgabe der Ergebnisse und löschen der temporären Tabellen, um den Speicherplatz freizugeben.
+Im Folgenden findet die Ausgabe der Ergebnisse und das Löschen der temporären Tabellen statt, um den Speicherplatz freizugeben.
 
 ```sql
 SELECT * FROM #Bradford_Ergebnisse
@@ -88,7 +82,7 @@ DROP TABLE #Bradford_Ergebnisse, #Result_Periode, #Schichtcenter_Daten
 
 ### Fiktive Ergebnistabelle
 
-Diese Tabelle zeigt die Anzahl der Ausfälle und die durchschnittliche Anzahl der Fehltage für verschiedene Mitarbeiter basierend auf den Ergebnissen des SQL-Codes.
+Diese Tabelle zeigt die Anzahl der Ausfälle und die durchschnittliche Anzahl der Fehltage für verschiedene Mitarbeiter.
 
 | Mitarbeiter-ID | Anzahl Ausfälle | Durchschnittliche Fehltage |
 |----------------|------------------|----------------------------|
@@ -104,7 +98,7 @@ Sie enthält hierbei folgende drei Spalten:
 - **Anzahl Ausfälle**: Die Anzahl der Abwesenheitsperioden des Mitarbeiters innerhalb des angegebenen Zeitraums.
 - **Durchschnittliche Fehltage**: Die durchschnittliche Anzahl der Fehltage pro Abwesenheitsperiode.
 
-Zusammengefasst, berechnet dieser Code Bradford-Faktoren für Mitarbeiter, basierend auf Schichtdaten in einem bestimmten Zeitraum, und speichert die Ergebnisse in temporären Tabellen, bevor sie schließlich ausgegeben werden.
+Zusammengefasst berechnet dieser Code Bradford-Faktoren für Mitarbeiter basierend auf Schichtdaten in einem bestimmten Zeitraum und speichert die Ergebnisse in temporären Tabellen, bevor sie schließlich ausgegeben werden.
 
 
 
@@ -124,13 +118,13 @@ Set SourceSheet = ActiveWorkbook.Worksheets("SourceSheet")
 ```
 
 Aktiviert das aktuelle Workbook und weist das Arbeitsblatt "SourceSheet" der Variablen SourceSheet zu.
-Bildschirmaktualisierung deaktivieren, um die Ausführungsgeschwindigkeit zu erhöhen und Flackern zu vermeiden.
+Bildschirmaktualisierung wird deaktiviert, um die Ausführungsgeschwindigkeit zu erhöhen und Bildschirmflackern zu vermeiden.
 
 ```vba
 Application.ScreenUpdating = False
 ```
 
-Zelleverbund aufheben:
+Zelleverbund wird aufgehoben:
 
 ```vba
 SourceSheet.Cells(1, 3).Select
@@ -139,8 +133,7 @@ SourceSheet.Cells(2, 3).Select
 Selection.UnMerge
 ```
 
-Trennt die verbundenen Zellen in den ersten beiden Zeilen der Spalte C.
-Relevante Zeilen ermitteln:
+Auftrennen der verbundenen Zellen in den ersten beiden Zeilen der Spalte C und ermitteln der relevanten Zeilen:
 
 ```vba
 FirstRow = 3
@@ -148,7 +141,7 @@ LastRow = SourceSheet.Cells(Rows.Count, 1).End(xlUp).Row
 Bestimmt die erste relevante Zeile (FirstRow = 3) und die letzte gefüllte Zeile in der Spalte A (LastRow).
 ```
 
-Durchläuft die Zeilen von FirstRow bis LastRow, trennt verbundene Zellen und verschiebt Inhalte entsprechend in die Spalten A, B und C.
+Anschließendes Durchlaufen der Zeilen von FirstRow bis LastRow, Trennung der verbundenen Zellen und Verschiebung der Inhalte entsprechend in die Spalten A, B und C.
 
 ```vba
 For SourceRow = FirstRow To LastRow
@@ -174,14 +167,14 @@ For SourceRow = FirstRow To LastRow
 Next SourceRow
 ```
 
-Löscht die gesamte Spalte D und verschiebt die restlichen Spalten nach links.
+Löschung der Spalte D und Verschiebung der restlichen Spalten nach links.
 
 ```vba
 Columns("D:D").Select
 Selection.Delete Shift:=xlToLeft
 ```
 
-Aktiviert die Bildschirmaktualisierung erneut, nachdem die Datenbereinigung abgeschlossen ist.
+Aktivierung der Bildschirmaktualisierung nachdem die Datenbereinigung abgeschlossen ist.
 
 ```vba
 Application.ScreenUpdating = True

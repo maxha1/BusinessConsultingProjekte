@@ -1,3 +1,5 @@
+## Business Consulting Projekte
+
 ## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit
 
 ### Beschreibung

@@ -1,5 +1,159 @@
 ## Business Consulting Projekte
 
+# Kohortenanalyse in Power BI mit DAX
+
+## Ziel
+Berechne den **Umsatz einer Kundenkohorte**, die im auswählbaren **Startquartal** eingekauft hat, und verfolge diesen über spätere Quartale hinweg – dynamisch steuerbar über zwei Slicer: Start- und Endquartal.
+
+## Hintergrund
+In vielen Geschäftsmodellen ist es spannend zu sehen, wie sich die **Kundenbindung** entwickelt:
+- Bleiben Kunden aktiv?
+- Wann und wie viel kaufen sie erneut?
+
+Diese Analyse bildet die Grundlage für **Kohortenanalysen**, wie sie in der Praxis z. B. im E-Commerce sehr verbreitet sind.
+
+## Verwendete Tabelle
+`Bestellungen bis 2025 Q1`
+
+**Relevante Spalten:**
+- `E-Mail` (zur Kundenidentifikation)
+- `Kaufquartal` (z. B. "2023 Q2")
+- `number` (Eindeutige Bestellnummer)
+- `Rechnungsbetrag` (Gesamter Bestellwert pro Kundenbestellung)
+
+---
+
+## DAX Measure
+```dax
+VAR StartQ =
+    IF(
+        HASONEVALUE( Startquartal[Startquartal] );
+        VALUES( Startquartal[Startquartal] )
+    )
+VAR EndQ =
+    IF(
+        HASONEVALUE( Endquartal[Endquartal] );
+        VALUES( Endquartal[Endquartal] )
+    )
+VAR AktQ =
+    MAX( 'Bestellungen bis 2025 Q1'[Kaufquartal] )
+VAR InitialCustomers =
+    CALCULATETABLE(
+        DISTINCT( 'Bestellungen bis 2025 Q1'[E-Mail] );
+        'Bestellungen bis 2025 Q1'[Kaufquartal] = StartQ
+    )
+VAR InRange = AktQ >= StartQ && AktQ <= EndQ
+
+RETURN
+IF(
+    InRange;
+    VAR Base =
+        FILTER(
+            ALL( 'Bestellungen bis 2025 Q1' );
+            'Bestellungen bis 2025 Q1'[Kaufquartal] = AktQ
+            && 'Bestellungen bis 2025 Q1'[E-Mail] IN InitialCustomers
+        )
+    VAR OrdersDistinct =
+        SUMMARIZE(
+            Base;
+            'Bestellungen bis 2025 Q1'[number];
+            "TotalAmount"; MAX( 'Bestellungen bis 2025 Q1'[Rechnungsbetrag] )
+        )
+    RETURN
+        SUMX( OrdersDistinct; [TotalAmount] )
+)
+```
+
+---
+
+## Schrittweise Erklärung
+
+### 1. Start- & Endquartal bestimmen
+```dax
+VAR StartQ =
+    IF(
+        HASONEVALUE( Startquartal[Startquartal] );
+        VALUES( Startquartal[Startquartal] )
+    )
+VAR EndQ =
+    IF(
+        HASONEVALUE( Endquartal[Endquartal] );
+        VALUES( Endquartal[Endquartal] )
+    )
+```
+Die Quartale werden über Slicer vom Nutzer ausgewählt. Diese Werte werden in den Variablen StartQ sowie EndQ gespeichert
+
+### 2. Aktuelles Quartal im Matrix-Visual
+```dax
+VAR AktQ = MAX('Bestellungen bis 2025 Q1'[Kaufquartal])
+```
+Nimmt das Quartal im aktuellen Filterkontext, welcher hier aus dem Start- und Endquartal sowie der in der sich in der Matrix-Zeile befindlichen Artikelnummer zusammensetzt
+
+### 3. Kohorte bestimmen
+```dax
+VAR InitialCustomers =
+       CALCULATETABLE(
+           DISTINCT('Bestellungen bis 2025 Q1'[E-Mail]),
+           'Bestellungen bis 2025 Q1'[Kaufquartal] = StartQ
+       )
+```
+Bestimmt die eindeutigen E-Mail Adressen aller Kunden, die im Startquartal gekauft haben.
+
+### 4. Aktuelles Quartal innerhalb des Zeitrahmens?
+```dax
+VAR InRange = AktQ >= StartQ && AktQ <= EndQ
+```
+An dieser Stelle soll lediglich der vom Nutzer über die Slicer ausgewählte Zeitraum beachtet werden
+
+### 5. Filterung auf relevante Zeilen
+```dax
+VAR Base =
+       FILTER(
+           ALL('Bestellungen bis 2025 Q1'),
+           'Bestellungen bis 2025 Q1'[Kaufquartal] = AktQ &&
+           'Bestellungen bis 2025 Q1'[E-Mail] IN InitialCustomers
+       )
+```
+Hier werden zunächst alle anderen Filter aufgehoben. Im Anschluss wird jedoch nach dem im aktuellen Filterkontext sichtbaren Quartal und den E-Mail-Adressen der Kohorte gefiltert.
+
+### 6. Aggregation auf Bestellnummer-Ebene
+```dax
+VAR OrdersDistinct =
+       SUMMARIZE(
+           Base,
+           [number],
+           "TotalAmount", MAX([Rechnungsbetrag])
+       )
+```
+An dieser Stelle muss das Format der aus der Shopware-Datenbank des Unternehmens exportierten Daten beachtet werden. Diese liegen in folgender Form vor:
+
+<img width="1809" height="162" alt="image" src="https://github.com/user-attachments/assets/cdcf5abf-35db-4aad-9cdc-72603c6e4f97" />
+
+Jede Kundenbestellung weist hier je Produkt eine Zeile vor. Dies bedeutet, dass der finale Rechnungsbetrag (Spalte "invoiceAmount") mehrfach vorkommt. 
+Dieser Teil des Measures sorgt somit dafür, dass pro Bestellung nach der eindeutigen Nummer in der Spalte "number" aggregiert wird und jeweils nur ein einzelner Rechnungsbetrag der Spalte "invoiceAmount" in Betracht gezogen wird.
+
+### 7. Umsatz summieren
+```dax
+SUMX( OrdersDistinct, [TotalAmount] )
+```
+Final werden dann die Bestellwerte aller eindeutigen Kundenbestellungen aufsummiert.
+
+---
+
+## Visualisierung
+
+<img width="1806" height="542" alt="image" src="https://github.com/user-attachments/assets/79493257-0723-47dd-b6b0-e92dbb83e4ba" />
+
+Dies ist das Visuelle Ergebnis der Auswertung mit fiktiven Zahlen in der orange-markierten Spalte dargestellt. Neben diesem Kohorten-Gesamtumsatz hatte ich zudem den Auftrag den Umsatz nur auf den 
+Artikel im aktuellen Filterkontext sowie die Anzahl der Kunden zu ermitteln. Diese sind in den beiden linken Spalten zu sehen.
+
+
+## Mögliche weitere Schritte
+- [ ] KPI-Boxen hinzufügen: Anzahl Kohortenkunden, Gesamtumsatz, Wiederkaufsrate
+- [ ] Zusätzliche Filteroptionen (z. B. Artikelgruppe, Land)
+- [ ] Analyse auf Monatsbasis
+- [ ] Integration in Power BI Dashboard mit Drillthrough-Möglichkeit
+
 ## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit
 
 ### Beschreibung

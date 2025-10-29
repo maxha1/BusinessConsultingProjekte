@@ -1,6 +1,4 @@
-## Business Consulting Projekte
-
-# Kohortenanalyse in Power BI mit DAX
+# Kohortenanalyse in Excel Power Pivot mit DAX-Measure
 
 ## Ziel
 Berechne den **Umsatz einer Kundenkohorte**, die im auswählbaren **Startquartal** eingekauft hat, und verfolge diesen über spätere Quartale hinweg – dynamisch steuerbar über zwei Slicer: Start- und Endquartal.
@@ -81,7 +79,7 @@ VAR EndQ =
         VALUES( Endquartal[Endquartal] )
     )
 ```
-Die Quartale werden über Slicer vom Nutzer ausgewählt. Diese Werte werden in den Variablen StartQ sowie EndQ gespeichert
+Die Quartale werden im Arbeitsblatt über Slicer vom Nutzer ausgewählt. Diese Werte werden in den Variablen StartQ sowie EndQ gespeichert
 
 ### 2. Aktuelles Quartal im Matrix-Visual
 ```dax
@@ -127,7 +125,7 @@ VAR OrdersDistinct =
 ```
 An dieser Stelle muss das Format der aus der Shopware-Datenbank des Unternehmens exportierten Daten beachtet werden. Diese liegen in folgender Form vor:
 
-<img width="1809" height="162" alt="image" src="https://github.com/user-attachments/assets/cdcf5abf-35db-4aad-9cdc-72603c6e4f97" />
+<img width="1809" height="142" alt="image" src="https://github.com/user-attachments/assets/cdcf5abf-35db-4aad-9cdc-72603c6e4f97" />
 
 Jede Kundenbestellung weist hier je Produkt eine Zeile vor. Dies bedeutet, dass der finale Rechnungsbetrag (Spalte "invoiceAmount") mehrfach vorkommt. 
 Dieser Teil des Measures sorgt somit dafür, dass pro Bestellung nach der eindeutigen Nummer in der Spalte "number" aggregiert wird und jeweils nur ein einzelner Rechnungsbetrag der Spalte "invoiceAmount" in Betracht gezogen wird.

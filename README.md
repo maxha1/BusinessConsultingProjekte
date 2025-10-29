@@ -1,14 +1,7 @@
-# Kohortenanalyse in Excel Power Pivot mit DAX-Measure
+# Projekt 1 bei Schweizer Nahrungsergänzungsmittel-Unternehmen: Kohortenanalyse in Excel Power Pivot mit DAX-Measure
 
-## Ziel
-Berechne den **Umsatz einer Kundenkohorte**, die im auswählbaren **Startquartal** eingekauft hat, und verfolge diesen über spätere Quartale hinweg – dynamisch steuerbar über zwei Slicer: Start- und Endquartal.
-
-## Hintergrund
-In vielen Geschäftsmodellen ist es spannend zu sehen, wie sich die **Kundenbindung** entwickelt:
-- Bleiben Kunden aktiv?
-- Wann und wie viel kaufen sie erneut?
-
-Diese Analyse bildet die Grundlage für **Kohortenanalysen**, wie sie in der Praxis z. B. im E-Commerce sehr verbreitet sind.
+### Beschreibung
+Dieses Projekt umfasst die Entwicklung einer dynamischen Kohortenanalyse in Excel Power Pivot. Ziel ist es, den Umsatz einer Kundenkohorte zu berechnen, die im auswählbaren Startquartal gekauft hat, und deren Umsatzentwicklung über spätere Quartale hinweg zu verfolgen. Mithilfe von Slicern für Start- und Endquartal lässt sich der Analysezeitraum flexibel steuern, um Kundenbindung und Wiederkaufsverhalten gezielt auszuwerten.
 
 ## Verwendete Tabelle
 `Bestellungen bis 2025 Q1`
@@ -112,7 +105,7 @@ VAR Base =
            'Bestellungen bis 2025 Q1'[E-Mail] IN InitialCustomers
        )
 ```
-Hier werden zunächst alle anderen Filter aufgehoben. Im Anschluss wird jedoch nach dem im aktuellen Filterkontext sichtbaren Quartal und den E-Mail-Adressen der Kohorte gefiltert.
+Hier werden zunächst alle anderen Filter aufgehoben. Im Anschluss wird die Bestelltabelle jedoch nach dem im aktuellen Filterkontext sichtbaren Quartal und den E-Mail-Adressen der Kohorte gefiltert.
 
 ### 6. Aggregation auf Bestellnummer-Ebene
 ```dax
@@ -125,6 +118,7 @@ VAR OrdersDistinct =
 ```
 An dieser Stelle muss das Format der aus der Shopware-Datenbank des Unternehmens exportierten Daten beachtet werden. Diese liegen in folgender Form vor:
 
+![Beschreibung des Bildes](assets/images/Enersuisse_Datenimport_Anleitung.jpg)
 <img width="1809" height="142" alt="image" src="https://github.com/user-attachments/assets/cdcf5abf-35db-4aad-9cdc-72603c6e4f97" />
 
 Jede Kundenbestellung weist hier je Produkt eine Zeile vor. Dies bedeutet, dass der finale Rechnungsbetrag (Spalte "invoiceAmount") mehrfach vorkommt. 
@@ -145,14 +139,7 @@ Final werden dann die Bestellwerte aller eindeutigen Kundenbestellungen aufsummi
 Dies ist das Visuelle Ergebnis der Auswertung mit fiktiven Zahlen in der orange-markierten Spalte dargestellt. Neben diesem Kohorten-Gesamtumsatz hatte ich zudem den Auftrag den Umsatz nur auf den 
 Artikel im aktuellen Filterkontext sowie die Anzahl der Kunden zu ermitteln. Diese sind in den beiden linken Spalten zu sehen.
 
-
-## Mögliche weitere Schritte
-- [ ] KPI-Boxen hinzufügen: Anzahl Kohortenkunden, Gesamtumsatz, Wiederkaufsrate
-- [ ] Zusätzliche Filteroptionen (z. B. Artikelgruppe, Land)
-- [ ] Analyse auf Monatsbasis
-- [ ] Integration in Power BI Dashboard mit Drillthrough-Möglichkeit
-
-## Projekt: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit
+## Projekt 2 in Schweizer Telekommunikationsunternehmen: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit
 
 ### Beschreibung
 Dieses Projekt beinhaltet die Berechnung des Bradford-Faktors für Mitarbeiter basierend auf ihren Abwesenheitsdaten. Es war Teil einer größeren Analyse bezüglich der Absenz von Mitarbeitern, welche nach Einführung des Geschäftsanalyse-Dienst Power BI dem Management als Report zur Verfügung gestellt werden sollte. Der Bradford-Faktor ist eine Kennzahl, die die Anzahl und Dauer der Krankheitsausfälle von Mitarbeitern bewertet. Diese Metrik hilft dabei, die Auswirkungen von häufigen, kurzen Abwesenheiten zu analysieren, die sich stärker auf den Betrieb auswirken können als längere, seltenere Ausfälle.
@@ -256,7 +243,7 @@ Zusammengefasst berechnet dieser Code Bradford-Faktoren für Mitarbeiter basiere
 
 
 
-## Projekt: Datenbereinigung und -verarbeitung mit VBA
+## Projekt 3 in Schweizer Telekommunikationsunternehmen: Datenbereinigung und -verarbeitung mit VBA
 
 Dieser VBA-Code ist ein Beispiel für die Datenbereinigung und -verarbeitung in Excel. Es handelte sich hierbei um einen Auftrag unseres Kunden Enersuisse, welche die Anrufdaten seiner Mitarbeiter täglich in einer Excel Datei zur Verfügung stellt. Das Ziel des Projekts war es die Excel-Datei in ein für den Kunden passendes Format zu bringen und anschließend zur besseren Analyse mithilfe von SQL Server Integration Services (SSIS) in eine SQL-Datenbank zu importieren. 
 

@@ -12,8 +12,6 @@ Dieses Projekt umfasst die Entwicklung einer dynamischen Kohortenanalyse in Exce
 - `number` (Eindeutige Bestellnummer)
 - `Rechnungsbetrag` (Gesamter Bestellwert pro Kundenbestellung)
 
----
-
 ## DAX Measure
 ```dax
 VAR StartQ =
@@ -57,8 +55,6 @@ IF(
 
 ---
 
-## Schrittweise Erklärung
-
 ### Start- & Endquartal bestimmen
 ```dax
 VAR StartQ =
@@ -74,7 +70,7 @@ VAR EndQ =
 ```
 Die Quartale werden im Arbeitsblatt über Slicer vom Nutzer ausgewählt. Diese Werte werden in den Variablen StartQ sowie EndQ gespeichert
 
-### Aktuelles Quartal im Matrix-Visual
+### Aktuelles Quartal ermitteln
 ```dax
 VAR AktQ = MAX('Bestellungen bis 2025 Q1'[Kaufquartal])
 ```
@@ -90,7 +86,7 @@ VAR InitialCustomers =
 ```
 Bestimmt die eindeutigen E-Mail Adressen aller Kunden, die im Startquartal gekauft haben.
 
-### Aktuelles Quartal innerhalb des Zeitrahmens?
+### Befindet sich das aktuelles Quartal innerhalb des Zeitrahmens?
 ```dax
 VAR InRange = AktQ >= StartQ && AktQ <= EndQ
 ```

@@ -127,8 +127,6 @@ SUMX( OrdersDistinct, [TotalAmount] )
 ```
 Final werden dann die Bestellwerte aller eindeutigen Kundenbestellungen aufsummiert.
 
----
-
 ### Visualisierung
 
 ![Beschreibung des Bildes](assets/images/Portfolioprojekte2.jpg)
@@ -136,12 +134,13 @@ Final werden dann die Bestellwerte aller eindeutigen Kundenbestellungen aufsummi
 Dies ist das Visuelle Ergebnis der Auswertung mit fiktiven Zahlen in der orange-markierten Spalte dargestellt. Neben diesem Kohorten-Gesamtumsatz hatte ich zudem den Auftrag den Umsatz nur auf den 
 Artikel im aktuellen Filterkontext sowie die Anzahl der Kunden zu ermitteln. Diese sind in den beiden linken Spalten zu sehen.
 
+---
+
 ## Projekt 2 in Schweizer Telekommunikationsunternehmen: Berechnung des Bradford-Faktors zur Mitarbeiterabwesenheit
 
 ### Beschreibung
 Dieses Projekt beinhaltet die Berechnung des Bradford-Faktors für Mitarbeiter basierend auf ihren Abwesenheitsdaten. Es war Teil einer größeren Analyse bezüglich der Absenz von Mitarbeitern, welche nach Einführung des Geschäftsanalyse-Dienst Power BI dem Management als Report zur Verfügung gestellt werden sollte. Der Bradford-Faktor ist eine Kennzahl, die die Anzahl und Dauer der Krankheitsausfälle von Mitarbeitern bewertet. Diese Metrik hilft dabei, die Auswirkungen von häufigen, kurzen Abwesenheiten zu analysieren, die sich stärker auf den Betrieb auswirken können als längere, seltenere Ausfälle.
 
----
 Zwei Datumsvariablen @Von und @Bis definieren den Zeitraum, in dem die Analyse durchgeführt wird. Die Variablen @i und @j werden später in der Schleife verwendet.
 
 ```sql
@@ -239,7 +238,7 @@ Sie enthält hierbei folgende drei Spalten:
 
 Zusammengefasst berechnet dieser Code Bradford-Faktoren für Mitarbeiter basierend auf Schichtdaten in einem bestimmten Zeitraum und speichert die Ergebnisse in temporären Tabellen, bevor sie schließlich ausgegeben werden.
 
-
+---
 
 ## Projekt 3 in Schweizer Telekommunikationsunternehmen: Datenbereinigung und -verarbeitung mit VBA
 

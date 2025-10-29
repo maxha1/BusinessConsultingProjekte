@@ -1,4 +1,6 @@
-# Projekt 1 bei Schweizer Nahrungsergänzungsmittel-Unternehmen: Kohortenanalyse in Excel Power Pivot mit DAX-Measure
+# Maximilian Hahn - Portfolioprojekte
+
+## Projekt 1 bei Schweizer Nahrungsergänzungsmittel-Unternehmen: Kohortenanalyse in Excel Power Pivot mit DAX-Measure
 
 ### Beschreibung
 Dieses Projekt umfasst die Entwicklung einer dynamischen Kohortenanalyse in Excel Power Pivot. Ziel ist es, den Umsatz einer Kundenkohorte zu berechnen, die im auswählbaren Startquartal gekauft hat, und deren Umsatzentwicklung über spätere Quartale hinweg zu verfolgen. Mithilfe von Slicern für Start- und Endquartal lässt sich der Analysezeitraum flexibel steuern, um Kundenbindung und Wiederkaufsverhalten gezielt auszuwerten.

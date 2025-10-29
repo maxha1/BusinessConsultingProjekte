@@ -59,7 +59,7 @@ IF(
 
 ## Schrittweise Erklärung
 
-### 1. Start- & Endquartal bestimmen
+### Start- & Endquartal bestimmen
 ```dax
 VAR StartQ =
     IF(
@@ -74,13 +74,13 @@ VAR EndQ =
 ```
 Die Quartale werden im Arbeitsblatt über Slicer vom Nutzer ausgewählt. Diese Werte werden in den Variablen StartQ sowie EndQ gespeichert
 
-### 2. Aktuelles Quartal im Matrix-Visual
+### Aktuelles Quartal im Matrix-Visual
 ```dax
 VAR AktQ = MAX('Bestellungen bis 2025 Q1'[Kaufquartal])
 ```
 Nimmt das Quartal im aktuellen Filterkontext, welcher hier aus dem Start- und Endquartal sowie der in der sich in der Matrix-Zeile befindlichen Artikelnummer zusammensetzt
 
-### 3. Kohorte bestimmen
+### Kohorte bestimmen
 ```dax
 VAR InitialCustomers =
        CALCULATETABLE(
@@ -90,13 +90,13 @@ VAR InitialCustomers =
 ```
 Bestimmt die eindeutigen E-Mail Adressen aller Kunden, die im Startquartal gekauft haben.
 
-### 4. Aktuelles Quartal innerhalb des Zeitrahmens?
+### Aktuelles Quartal innerhalb des Zeitrahmens?
 ```dax
 VAR InRange = AktQ >= StartQ && AktQ <= EndQ
 ```
 An dieser Stelle soll lediglich der vom Nutzer über die Slicer ausgewählte Zeitraum beachtet werden
 
-### 5. Filterung auf relevante Zeilen
+### Filterung auf relevante Zeilen
 ```dax
 VAR Base =
        FILTER(
@@ -107,7 +107,7 @@ VAR Base =
 ```
 Hier werden zunächst alle anderen Filter aufgehoben. Im Anschluss wird die Bestelltabelle jedoch nach dem im aktuellen Filterkontext sichtbaren Quartal und den E-Mail-Adressen der Kohorte gefiltert.
 
-### 6. Aggregation auf Bestellnummer-Ebene
+### Aggregation auf Bestellnummer-Ebene
 ```dax
 VAR OrdersDistinct =
        SUMMARIZE(
@@ -124,7 +124,7 @@ An dieser Stelle muss das Format der aus der Shopware-Datenbank des Unternehmens
 Jede Kundenbestellung weist hier je Produkt eine Zeile vor. Dies bedeutet, dass der finale Rechnungsbetrag (Spalte "invoiceAmount") mehrfach vorkommt. 
 Dieser Teil des Measures sorgt somit dafür, dass pro Bestellung nach der eindeutigen Nummer in der Spalte "number" aggregiert wird und jeweils nur ein einzelner Rechnungsbetrag der Spalte "invoiceAmount" in Betracht gezogen wird.
 
-### 7. Umsatz summieren
+### Umsatz summieren
 ```dax
 SUMX( OrdersDistinct, [TotalAmount] )
 ```
@@ -144,6 +144,7 @@ Artikel im aktuellen Filterkontext sowie die Anzahl der Kunden zu ermitteln. Die
 ### Beschreibung
 Dieses Projekt beinhaltet die Berechnung des Bradford-Faktors für Mitarbeiter basierend auf ihren Abwesenheitsdaten. Es war Teil einer größeren Analyse bezüglich der Absenz von Mitarbeitern, welche nach Einführung des Geschäftsanalyse-Dienst Power BI dem Management als Report zur Verfügung gestellt werden sollte. Der Bradford-Faktor ist eine Kennzahl, die die Anzahl und Dauer der Krankheitsausfälle von Mitarbeitern bewertet. Diese Metrik hilft dabei, die Auswirkungen von häufigen, kurzen Abwesenheiten zu analysieren, die sich stärker auf den Betrieb auswirken können als längere, seltenere Ausfälle.
 
+---
 Zwei Datumsvariablen @Von und @Bis definieren den Zeitraum, in dem die Analyse durchgeführt wird. Die Variablen @i und @j werden später in der Schleife verwendet.
 
 ```sql

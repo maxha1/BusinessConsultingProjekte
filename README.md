@@ -118,8 +118,7 @@ VAR OrdersDistinct =
 ```
 An dieser Stelle muss das Format der aus der Shopware-Datenbank des Unternehmens exportierten Daten beachtet werden. Diese liegen in folgender Form vor:
 
-![Beschreibung des Bildes](assets/images/Enersuisse_Datenimport_Anleitung.jpg)
-<img width="1809" height="142" alt="image" src="https://github.com/user-attachments/assets/cdcf5abf-35db-4aad-9cdc-72603c6e4f97" />
+![Beschreibung des Bildes](assets/images/Portfolioprojekte1.jpg)
 
 Jede Kundenbestellung weist hier je Produkt eine Zeile vor. Dies bedeutet, dass der finale Rechnungsbetrag (Spalte "invoiceAmount") mehrfach vorkommt. 
 Dieser Teil des Measures sorgt somit dafür, dass pro Bestellung nach der eindeutigen Nummer in der Spalte "number" aggregiert wird und jeweils nur ein einzelner Rechnungsbetrag der Spalte "invoiceAmount" in Betracht gezogen wird.
@@ -134,7 +133,7 @@ Final werden dann die Bestellwerte aller eindeutigen Kundenbestellungen aufsummi
 
 ## Visualisierung
 
-<img width="1806" height="542" alt="image" src="https://github.com/user-attachments/assets/79493257-0723-47dd-b6b0-e92dbb83e4ba" />
+![Beschreibung des Bildes](assets/images/Portfolioprojekte2.jpg)
 
 Dies ist das Visuelle Ergebnis der Auswertung mit fiktiven Zahlen in der orange-markierten Spalte dargestellt. Neben diesem Kohorten-Gesamtumsatz hatte ich zudem den Auftrag den Umsatz nur auf den 
 Artikel im aktuellen Filterkontext sowie die Anzahl der Kunden zu ermitteln. Diese sind in den beiden linken Spalten zu sehen.

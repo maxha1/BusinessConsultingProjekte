@@ -5,7 +5,7 @@
 ### Beschreibung
 Dieses Projekt umfasst die Entwicklung einer dynamischen Kohortenanalyse in Excel Power Pivot. Ziel ist es, den Umsatz einer Kundenkohorte zu berechnen, die im auswählbaren Startquartal gekauft hat, und deren Umsatzentwicklung über spätere Quartale hinweg zu verfolgen. Mithilfe von Slicern für Start- und Endquartal lässt sich der Analysezeitraum flexibel steuern, um Kundenbindung und Wiederkaufsverhalten gezielt auszuwerten.
 
-## Verwendete Tabelle
+### Verwendete Tabelle
 `Bestellungen bis 2025 Q1`
 
 **Relevante Spalten:**
@@ -14,7 +14,7 @@ Dieses Projekt umfasst die Entwicklung einer dynamischen Kohortenanalyse in Exce
 - `number` (Eindeutige Bestellnummer)
 - `Rechnungsbetrag` (Gesamter Bestellwert pro Kundenbestellung)
 
-## DAX Measure
+### DAX Measure
 ```dax
 VAR StartQ =
     IF(
@@ -129,7 +129,7 @@ Final werden dann die Bestellwerte aller eindeutigen Kundenbestellungen aufsummi
 
 ---
 
-## Visualisierung
+### Visualisierung
 
 ![Beschreibung des Bildes](assets/images/Portfolioprojekte2.jpg)
 

@@ -1,5 +1,5 @@
 title: Business Consulting Projekte
-description: Dies ist ein Repository, welches Projekte während meiner Anstellung als Business Consultant bei der Capita Customer Services AG enthält.
+description: Dies ist ein Repository, welches ausgewählte Projekte während meiner Anstellung als Werkstudent sowie Business Consultant bei verschiedenen Schweizer Unternehmen enthält.
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one

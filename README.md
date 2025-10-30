@@ -1,5 +1,3 @@
-# Maximilian Hahn - Portfolioprojekte
-
 ## Projekt 1 bei Schweizer Nahrungsergänzungsmittel-Unternehmen: Kohortenanalyse in Excel Power Pivot mit DAX-Measure
 
 ### Beschreibung

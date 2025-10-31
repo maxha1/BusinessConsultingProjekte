@@ -1,4 +1,4 @@
-## Projekt 1 bei Schweizer Nahrungsergänzungsmittel-Unternehmen: Kohortenanalyse in Excel Power Pivot mit DAX-Measure
+### Projekt 1 bei Schweizer Nahrungsergänzungsmittel-Unternehmen: Kohortenanalyse in Excel Power Pivot mit DAX-Measure
 
 ### Beschreibung
 Dieses Projekt umfasste die Entwicklung einer dynamischen Kohortenanalyse in Excel Power Pivot. Ziel war es, den Umsatz einer Kundenkohorte zu berechnen, die im auswählbaren Startquartal gekauft hatte, und deren Umsatzentwicklung über spätere Quartale hinweg zu verfolgen. Mithilfe von Slicern für Start- und Endquartal lies sich der Analysezeitraum flexibel steuern, um Kundenbindung und Wiederkaufsverhalten gezielt auszuwerten.

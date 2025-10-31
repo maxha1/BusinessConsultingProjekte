@@ -101,7 +101,7 @@ VAR Base =
            'Bestellungen bis 2025 Q1'[E-Mail] IN InitialCustomers
        )
 ```
-Hier werden zunächst alle anderen Filter aufgehoben. Im Anschluss wird die Bestelltabelle jedoch nach dem im aktuellen Filterkontext sichtbaren Quartal und den E-Mail-Adressen der Kohorte gefiltert.
+Hier werden zunächst alle anderen Filter aufgehoben. Im Anschluss wird die Bestelltabelle nach dem im aktuellen Filterkontext sichtbaren Quartal und den E-Mail-Adressen der Kohorte gefiltert.
 
 ### Aggregation auf Bestellnummer-Ebene
 ```dax
